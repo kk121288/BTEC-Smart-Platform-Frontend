@@ -8,6 +8,7 @@ import Upload from '../pages/Upload';
 import Results from '../pages/Results';
 import Students from '../pages/Students';
 import Assignments from '../pages/Assignments';
+import Simulation from '../pages/Simulation';
 import { useAuthStore } from '../store/authStore';
 
 // 404 Page
@@ -62,6 +63,17 @@ export default function AppRouter() {
               <ProtectedRoute>
                 <AppLayout>
                   <Dashboard />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/simulation"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <Simulation />
                 </AppLayout>
               </ProtectedRoute>
             }
