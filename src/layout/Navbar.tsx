@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Search, Bell, Sun, Moon, Globe, Menu, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAuthStore } from '../../store/authStore';
-import { useUIStore } from '../../store/uiStore';
-import { useAuth } from '../../hooks/useAuth';
-import { cn } from '../../lib/utils';
+import { useAuthStore } from '../store/authStore';
+import { useUIStore } from '../store/uiStore';
+import { useAuth } from '../hooks/useAuth';
+import { cn } from '../lib/utils';
 
 export default function Navbar() {
   const { theme, language, toggleTheme, toggleLanguage, toggleSidebar } = useUIStore();

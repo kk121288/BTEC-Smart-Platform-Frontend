@@ -10,10 +10,10 @@ import {
   LogOut,
   ChevronLeft,
 } from 'lucide-react';
-import { useAuthStore } from '../../store/authStore';
-import { useUIStore } from '../../store/uiStore';
-import { useAuth } from '../../hooks/useAuth';
-import { cn } from '../../lib/utils';
+import { useAuthStore } from '../store/authStore';
+import { useUIStore } from '../store/uiStore';
+import { useAuth } from '../hooks/useAuth';
+import { cn } from '../lib/utils';
 
 const menuItems = [
   { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
