@@ -15,8 +15,10 @@ export default function Settings() {
   });
 
   const handleSave = () => {
+    // TODO: Implement API call to save settings
     console.log('Saving settings:', settings);
-    // TODO: Implement API call
+    // For now, just show success feedback
+    alert('Settings will be saved when backend is connected');
   };
 
   const tabs = [

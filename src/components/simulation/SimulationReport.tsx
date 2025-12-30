@@ -75,11 +75,11 @@ export function SimulationReport({
         {/* Performance Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {[
-            { label: 'Technology', value: performance.tech, color: 'cyan' },
-            { label: 'Finance', value: performance.finance, color: 'blue' },
-            { label: 'Market', value: performance.market, color: 'purple' },
-            { label: 'Cybersecurity', value: performance.cybersecurity, color: 'green' },
-            { label: 'Innovation', value: performance.innovation, color: 'yellow' },
+            { label: 'Technology', value: performance.tech, color: '#00ffcc' },
+            { label: 'Finance', value: performance.finance, color: '#3b82f6' },
+            { label: 'Market', value: performance.market, color: '#8b5cf6' },
+            { label: 'Cybersecurity', value: performance.cybersecurity, color: '#22c55e' },
+            { label: 'Innovation', value: performance.innovation, color: '#f59e0b' },
           ].map((metric) => (
             <div
               key={metric.label}
@@ -91,8 +91,11 @@ export function SimulationReport({
               </div>
               <div className="mt-2 w-full h-2 bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className={`h-full bg-gradient-to-r from-${metric.color}-500 to-${metric.color}-400`}
-                  style={{ width: `${metric.value}%`, backgroundColor: `var(--${metric.color})` }}
+                  className="h-full"
+                  style={{ 
+                    width: `${metric.value}%`, 
+                    background: `linear-gradient(to right, ${metric.color}, ${metric.color}dd)`
+                  }}
                 ></div>
               </div>
             </div>

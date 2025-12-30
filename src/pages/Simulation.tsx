@@ -40,8 +40,9 @@ export default function Simulation() {
   };
 
   const handleExport = () => {
-    // TODO: Implement export functionality
+    // TODO: Implement export functionality using export service
     console.log('Export report');
+    alert('Export functionality will be available when backend is connected');
   };
 
   return (
