@@ -35,6 +35,8 @@ vercel link
 
 #### 4. Configure Environment Variables
 
+**Important:** The `vercel.json` file references `@btec-api-url` which is a Vercel environment variable reference. You need to create this variable in your Vercel project settings or via CLI.
+
 ```bash
 # Set production environment variables
 vercel env add VITE_API_URL production
@@ -45,6 +47,12 @@ vercel env add VITE_SECURE_COOKIES production
 
 vercel env add VITE_API_TIMEOUT production
 # Enter: 30000
+```
+
+**Note:** The `@btec-api-url` syntax in `vercel.json` is a reference to a Vercel secret/environment variable. Create it with:
+```bash
+vercel env add btec-api-url production
+# Enter your backend URL
 ```
 
 Or use the automated script:
