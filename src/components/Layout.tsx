@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
+import { LanguageSwitcher } from './ui/LanguageSwitcher';
 
 interface LayoutProps {
   children: ReactNode;
@@ -53,6 +54,7 @@ export function Layout({ children }: LayoutProps) {
 
             {/* User Menu */}
             <div className="flex items-center space-x-4">
+              <LanguageSwitcher />
               <button className="relative p-2 text-gray-400 hover:text-cyan-400 transition">
                 <span className="text-2xl">🔔</span>
                 <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
