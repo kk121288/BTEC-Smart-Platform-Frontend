@@ -21,14 +21,20 @@ async def health_check():
     return {"status": "healthy", "service": "BTEC Smart Platform API"}
 
 # Your existing endpoints...
+from pydantic import BaseModel
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
 @app.post("/token")
-async def login(username: str, password: str):
+async def login(credentials: LoginRequest):
     return {
         "access_token": "test_token_123",
         "token_type": "bearer",
         "user": {
             "id": 1,
-            "email": username,
+            "email": credentials.username,
             "name": "Test User",
             "role": "teacher"
         }
