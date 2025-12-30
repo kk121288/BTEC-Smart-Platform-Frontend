@@ -32,12 +32,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const storedToken = getAuthToken();
       if (storedToken) {
-        // Verify token with backend (optional - could be a /me endpoint)
-        // For now, we'll just trust the stored token
+        // TODO: Verify token with backend (e.g., /me endpoint) for production
+        // For now, we trust the stored token - it will be validated on first API call
+        // and cleared by the axios interceptor if invalid (401 response)
         setToken(storedToken);
-        // In a real app, you'd fetch user data from /me endpoint
-        // For now, we'll set a placeholder that will be updated on login
-        // This will be overwritten when the user actually logs in
       }
     } catch (error) {
       console.error('Auth check failed:', error);

@@ -33,9 +33,9 @@ axiosInstance.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      // Unauthorized - clear token and redirect to login
+      // Unauthorized - clear token
+      // Note: Actual redirect is handled by AuthContext and React Router
       removeAuthToken();
-      window.location.href = '/login';
     }
     return Promise.reject(error);
   }

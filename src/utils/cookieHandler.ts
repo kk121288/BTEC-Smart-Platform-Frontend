@@ -6,7 +6,7 @@ const TOKEN_EXPIRY_DAYS = 7;
 export const setAuthToken = (token: string): void => {
   Cookies.set(AUTH_TOKEN_KEY, token, {
     expires: TOKEN_EXPIRY_DAYS,
-    secure: true,
+    secure: import.meta.env.PROD, // Only use secure flag in production
     sameSite: 'strict',
   });
 };
