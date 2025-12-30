@@ -1,0 +1,30 @@
+name: Sync Template to Design
+
+on:
+  push:
+    branches:
+      - template
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+      - name: Merge template into design
+        run: |
+          git checkout design
+          git merge template -m "Sync template to design" --allow-unrelated-histories || true
+
+      - name: Push changes
+        run: |
+          git push origin design
