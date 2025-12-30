@@ -7,6 +7,39 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Environment Setup
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.production.example .env.development
+   ```
+
+2. Update `.env.development` with your local backend URL:
+   ```env
+   VITE_API_URL=http://localhost:8000
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+For detailed setup instructions, see [docs/ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md).
+
+## Backend Integration
+
+This frontend connects to a FastAPI backend. See [docs/BACKEND_INTEGRATION.md](docs/BACKEND_INTEGRATION.md) for:
+- CORS configuration
+- Required API endpoints
+- Testing the connection
+
+---
+
+## Deployment
+
+- Frontend: Vercel (see `vercel.json`)
+- Backend: Render (see backend `render.yaml`)
+
 ## React Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
