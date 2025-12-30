@@ -1,220 +1,203 @@
-import { motion } from 'framer-motion';
-import {
-  Users,
-  FileText,
-  TrendingUp,
-  Clock,
-  Upload,
-  CheckCircle,
-  BarChart3,
-} from 'lucide-react';
-import Card, { CardContent, CardHeader, CardTitle } from '../components/ui/Card';
-import Button from '../components/ui/Button';
-import { useAuthStore } from '../store/authStore';
-import { useNavigate } from 'react-router-dom';
-
-// Mock data for demonstration
-const stats = [
-  {
-    title: 'Total Students',
-    value: '1,284',
-    change: '+12%',
-    icon: Users,
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    title: 'Assignments',
-    value: '48',
-    change: '+4',
-    icon: FileText,
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    title: 'Average Grade',
-    value: '85%',
-    change: '+2.5%',
-    icon: TrendingUp,
-    color: 'from-green-500 to-green-600',
-  },
-  {
-    title: 'Pending Reviews',
-    value: '23',
-    change: '-5',
-    icon: Clock,
-    color: 'from-orange-500 to-orange-600',
-  },
-];
-
-const recentActivities = [
-  { id: 1, type: 'upload', message: 'New assignment uploaded: Database Design', time: '2 hours ago' },
-  { id: 2, type: 'grade', message: 'Graded 15 submissions for Web Development', time: '5 hours ago' },
-  { id: 3, type: 'student', message: 'New student enrolled: Sarah Johnson', time: '1 day ago' },
-  { id: 4, type: 'result', message: 'Results published for Programming Fundamentals', time: '2 days ago' },
-];
+import { DashboardWidget } from '@/components/charts/DashboardWidget';
+import { LineChart } from '@/components/charts/LineChart';
+import { BarChart } from '@/components/charts/BarChart';
+import { PieChart } from '@/components/charts/PieChart';
+import { Badge } from '@/components/ui/Badge';
 
 export default function Dashboard() {
-  const user = useAuthStore((state) => state.user);
-  const navigate = useNavigate();
+  // Sample data
+  const performanceData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [
+      {
+        label: 'Assignments',
+        data: [65, 78, 85, 81, 92, 88],
+        borderColor: '#00ffcc',
+        backgroundColor: 'rgba(0, 255, 204, 0.1)',
+        fill: true,
+      },
+      {
+        label: 'Attendance',
+        data: [85, 88, 90, 87, 95, 92],
+        borderColor: '#3b82f6',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        fill: true,
+      },
+    ],
+  };
+
+  const gradeDistribution = {
+    labels: ['Tech', 'Finance', 'Marketing', 'Cybersecurity', 'Innovation'],
+    datasets: [
+      {
+        label: 'Performance',
+        data: [85, 78, 92, 88, 90],
+        backgroundColor: [
+          'rgba(0, 255, 204, 0.8)',
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(139, 92, 246, 0.8)',
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(245, 158, 11, 0.8)',
+        ],
+        borderColor: [
+          '#00ffcc',
+          '#3b82f6',
+          '#8b5cf6',
+          '#22c55e',
+          '#f59e0b',
+        ],
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const courseCompletion = {
+    labels: ['React', 'TypeScript', 'Node.js', 'Database', 'DevOps', 'Testing'],
+    datasets: [
+      {
+        label: 'Completion %',
+        data: [95, 88, 75, 60, 45, 82],
+        backgroundColor: 'rgba(0, 255, 204, 0.6)',
+        borderColor: '#00ffcc',
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const stats = [
+    { label: 'Total Students', value: '1,234', change: '+12%', icon: '👥', color: 'cyan' },
+    { label: 'Active Courses', value: '42', change: '+3', icon: '📚', color: 'blue' },
+    { label: 'Avg. Grade', value: '87%', change: '+5%', icon: '🎓', color: 'purple' },
+    { label: 'Completion Rate', value: '92%', change: '+8%', icon: '✅', color: 'green' },
+  ];
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Welcome back, {user?.name?.split(' ')[0]}! 👋
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
-            Here's what's happening with your platform today
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-8">
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              Dashboard
+            </h1>
+            <p className="text-gray-400 mt-2">Welcome back! Here's your overview</p>
+          </div>
+          <div className="flex gap-3">
+            <button className="px-4 py-2 bg-cyan-500/20 border border-cyan-500/50 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition">
+              This Week
+            </button>
+            <button className="px-4 py-2 bg-black/50 border border-cyan-500/30 text-gray-400 rounded-lg hover:border-cyan-500/50 transition">
+              This Month
+            </button>
+            <button className="px-4 py-2 bg-black/50 border border-cyan-500/30 text-gray-400 rounded-lg hover:border-cyan-500/50 transition">
+              This Year
+            </button>
+          </div>
         </div>
-        <Button
-          variant="primary"
-          icon={<Upload size={18} />}
-          onClick={() => navigate('/upload')}
-        >
-          Upload Assignment
-        </Button>
-      </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={stat.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <Card hover>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                      {stat.title}
-                    </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {stat.value}
-                    </p>
-                    <p className="text-xs text-green-600 dark:text-green-400 mt-1">
-                      {stat.change} from last month
-                    </p>
-                  </div>
-                  <div
-                    className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-xl flex items-center justify-center`}
-                  >
-                    <stat.icon className="text-white" size={24} />
-                  </div>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-black/40 backdrop-blur-lg border border-cyan-500/30 rounded-xl p-6 hover:shadow-[0_0_30px_rgba(0,255,204,0.3)] transition-all duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <p className="text-gray-400 text-sm mb-1">{stat.label}</p>
+                  <h3 className="text-3xl font-bold text-cyan-400 mb-2">{stat.value}</h3>
+                  <Badge variant="success" size="sm">{stat.change}</Badge>
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Chart Placeholder */}
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <BarChart3 size={20} />
-              Performance Overview
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64 flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700">
-              <div className="text-center">
-                <BarChart3 className="mx-auto text-gray-400 dark:text-gray-600 mb-2" size={48} />
-                <p className="text-gray-600 dark:text-gray-400">
-                  Chart visualization ready
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  Integration with Chart.js or Recharts
-                </p>
+                <span className="text-4xl">{stat.icon}</span>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          ))}
+        </div>
 
-        {/* Recent Activities */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activities</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentActivities.map((activity, index) => (
-                <motion.div
-                  key={activity.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+        {/* Charts Row 1 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <DashboardWidget
+            title="Performance Trends"
+            subtitle="Last 6 months"
+            onExport={() => console.log('Export performance chart')}
+          >
+            <LineChart data={performanceData} height={300} />
+          </DashboardWidget>
+
+          <DashboardWidget
+            title="Subject Performance"
+            subtitle="Current semester"
+            onExport={() => console.log('Export grade distribution')}
+          >
+            <PieChart data={gradeDistribution} height={300} />
+          </DashboardWidget>
+        </div>
+
+        {/* Charts Row 2 */}
+        <DashboardWidget
+          title="Course Completion Progress"
+          subtitle="All enrolled courses"
+          onExport={() => console.log('Export completion chart')}
+        >
+          <BarChart data={courseCompletion} height={350} />
+        </DashboardWidget>
+
+        {/* Recent Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-black/40 backdrop-blur-lg border border-cyan-500/30 rounded-2xl p-6">
+            <h2 className="text-2xl font-bold text-cyan-400 mb-4" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              Recent Assignments
+            </h2>
+            <div className="space-y-3">
+              {[
+                { title: 'React Hooks Project', due: 'Due in 2 days', status: 'pending' },
+                { title: 'TypeScript Quiz', due: 'Due tomorrow', status: 'pending' },
+                { title: 'Node.js API', due: 'Completed', status: 'completed' },
+                { title: 'Database Design', due: 'Completed', status: 'completed' },
+              ].map((assignment, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-3 bg-black/30 border border-cyan-500/20 rounded-lg"
                 >
-                  <div className="flex-shrink-0">
-                    {activity.type === 'upload' && (
-                      <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                        <Upload className="text-blue-600 dark:text-blue-400" size={16} />
-                      </div>
-                    )}
-                    {activity.type === 'grade' && (
-                      <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                        <CheckCircle className="text-green-600 dark:text-green-400" size={16} />
-                      </div>
-                    )}
-                    {activity.type === 'student' && (
-                      <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
-                        <Users className="text-purple-600 dark:text-purple-400" size={16} />
-                      </div>
-                    )}
-                    {activity.type === 'result' && (
-                      <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
-                        <FileText className="text-orange-600 dark:text-orange-400" size={16} />
-                      </div>
-                    )}
+                  <div>
+                    <h3 className="text-cyan-400 font-semibold">{assignment.title}</h3>
+                    <p className="text-gray-500 text-sm">{assignment.due}</p>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-900 dark:text-white">
-                      {activity.message}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                      {activity.time}
-                    </p>
-                  </div>
-                </motion.div>
+                  <Badge variant={assignment.status === 'completed' ? 'success' : 'warning'}>
+                    {assignment.status}
+                  </Badge>
+                </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Quick Actions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Button variant="outline" className="justify-start" onClick={() => navigate('/upload')}>
-              <Upload size={18} />
-              Upload Assignment
-            </Button>
-            <Button variant="outline" className="justify-start" onClick={() => navigate('/students')}>
-              <Users size={18} />
-              Manage Students
-            </Button>
-            <Button variant="outline" className="justify-start" onClick={() => navigate('/results')}>
-              <FileText size={18} />
-              View Results
-            </Button>
-            <Button variant="outline" className="justify-start" onClick={() => navigate('/assignments')}>
-              <CheckCircle size={18} />
-              Assignments
-            </Button>
           </div>
-        </CardContent>
-      </Card>
+
+          <div className="bg-black/40 backdrop-blur-lg border border-cyan-500/30 rounded-2xl p-6">
+            <h2 className="text-2xl font-bold text-cyan-400 mb-4" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+              Upcoming Classes
+            </h2>
+            <div className="space-y-3">
+              {[
+                { title: 'Advanced JavaScript', time: 'Today, 2:00 PM', room: 'Room 101' },
+                { title: 'React Patterns', time: 'Tomorrow, 10:00 AM', room: 'Room 203' },
+                { title: 'Web Security', time: 'Wed, 3:00 PM', room: 'Room 105' },
+                { title: 'Cloud Computing', time: 'Thu, 1:00 PM', room: 'Online' },
+              ].map((cls, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-3 bg-black/30 border border-cyan-500/20 rounded-lg"
+                >
+                  <div className="w-2 h-2 mt-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(0,255,204,0.8)]"></div>
+                  <div className="flex-1">
+                    <h3 className="text-cyan-400 font-semibold">{cls.title}</h3>
+                    <p className="text-gray-400 text-sm">{cls.time}</p>
+                    <p className="text-gray-500 text-xs">{cls.room}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
