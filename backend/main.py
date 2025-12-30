@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 import os
 
 app = FastAPI(title="BTEC Smart Platform API")
@@ -21,8 +22,6 @@ async def health_check():
     return {"status": "healthy", "service": "BTEC Smart Platform API"}
 
 # Your existing endpoints...
-from pydantic import BaseModel
-
 class LoginRequest(BaseModel):
     username: str
     password: str
