@@ -24,6 +24,22 @@ export default function SimulationPage() {
 
   const { currentSimulation, saveSimulation, setCurrentSimulation } = useSimulationStore();
 
+  const completeSimulation = useCallback((result: ReturnType<EconomicEngine['calculate']>) => {
+    const simulation: Simulation = {
+      id: `sim-${Date.now()}`,
+      studentName,
+      decisions: decisions!,
+      performance: result.performance,
+      result,
+      createdAt: new Date().toISOString(),
+      completedAt: new Date().toISOString(),
+    };
+
+    saveSimulation(simulation);
+    setCurrentSimulation(simulation);
+    setPhase('results');
+  }, [studentName, decisions, saveSimulation, setCurrentSimulation]);
+
   useEffect(() => {
     if (phase === 'running' && decisions) {
       // Simulate progression through months
@@ -63,22 +79,6 @@ export default function SimulationPage() {
     setDecisions(newDecisions);
     setPhase('running');
   };
-
-  const completeSimulation = useCallback((result: ReturnType<EconomicEngine['calculate']>) => {
-    const simulation: Simulation = {
-      id: `sim-${Date.now()}`,
-      studentName,
-      decisions: decisions!,
-      performance: result.performance,
-      result,
-      createdAt: new Date().toISOString(),
-      completedAt: new Date().toISOString(),
-    };
-
-    saveSimulation(simulation);
-    setCurrentSimulation(simulation);
-    setPhase('results');
-  }, [studentName, decisions, saveSimulation, setCurrentSimulation]);
 
   const handleNewSimulation = () => {
     setPhase('setup');

@@ -144,7 +144,7 @@ function Scene({ decisions }: { decisions: SimulationDecisions }) {
         inclination={0.6}
         azimuth={0.25}
       />
-      <Environment preset="night" />
+      {/* <Environment preset="night" /> */}
     </>
   );
 }
