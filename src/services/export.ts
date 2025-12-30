@@ -5,7 +5,7 @@ import autoTable from 'jspdf-autotable';
 /**
  * Export data to Excel file
  */
-export function exportToExcel(data: any[], filename: string, sheetName: string = 'Sheet1') {
+export function exportToExcel(data: Record<string, unknown>[], filename: string, sheetName: string = 'Sheet1') {
   const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
@@ -15,7 +15,7 @@ export function exportToExcel(data: any[], filename: string, sheetName: string =
 /**
  * Export data to CSV file
  */
-export function exportToCSV(data: any[], filename: string) {
+export function exportToCSV(data: Record<string, unknown>[], filename: string) {
   const worksheet = XLSX.utils.json_to_sheet(data);
   const csv = XLSX.utils.sheet_to_csv(worksheet);
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -33,7 +33,7 @@ export function exportToCSV(data: any[], filename: string) {
  * Export data to PDF file
  */
 export function exportToPDF(
-  data: any[],
+  data: Record<string, unknown>[],
   filename: string,
   options: {
     title?: string;

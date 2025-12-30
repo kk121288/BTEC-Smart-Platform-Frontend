@@ -64,7 +64,7 @@ export function SimulationSetup({ onStart }: SimulationSetupProps) {
               </label>
               <select
                 value={decisions.projectType}
-                onChange={(e) => updateDecision('projectType', e.target.value as any)}
+                onChange={(e) => updateDecision('projectType', e.target.value as 'tech' | 'finance' | 'marketing')}
                 className="w-full px-4 py-3 bg-black/50 border border-cyan-500/50 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition"
               >
                 <option value="tech">Technology | التكنولوجيا</option>
@@ -80,7 +80,7 @@ export function SimulationSetup({ onStart }: SimulationSetupProps) {
               </label>
               <select
                 value={decisions.budget}
-                onChange={(e) => updateDecision('budget', e.target.value as any)}
+                onChange={(e) => updateDecision('budget', e.target.value as 'low' | 'medium' | 'high')}
                 className="w-full px-4 py-3 bg-black/50 border border-cyan-500/50 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition"
               >
                 <option value="low">Low | منخفض</option>
@@ -96,7 +96,7 @@ export function SimulationSetup({ onStart }: SimulationSetupProps) {
               </label>
               <select
                 value={decisions.marketing}
-                onChange={(e) => updateDecision('marketing', e.target.value as any)}
+                onChange={(e) => updateDecision('marketing', e.target.value as 'socialMedia' | 'traditional' | 'influencer')}
                 className="w-full px-4 py-3 bg-black/50 border border-cyan-500/50 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition"
               >
                 <option value="socialMedia">Social Media | وسائل التواصل</option>
@@ -112,7 +112,7 @@ export function SimulationSetup({ onStart }: SimulationSetupProps) {
               </label>
               <select
                 value={decisions.complexityLevel}
-                onChange={(e) => updateDecision('complexityLevel', e.target.value as any)}
+                onChange={(e) => updateDecision('complexityLevel', e.target.value as 'Basic' | 'Intermediate' | 'Advanced')}
                 className="w-full px-4 py-3 bg-black/50 border border-cyan-500/50 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition"
               >
                 <option value="Basic">Basic | أساسي</option>
@@ -128,7 +128,7 @@ export function SimulationSetup({ onStart }: SimulationSetupProps) {
               </label>
               <select
                 value={decisions.cybersecurity}
-                onChange={(e) => updateDecision('cybersecurity', e.target.value as any)}
+                onChange={(e) => updateDecision('cybersecurity', e.target.value as 'basic' | 'advanced' | 'enterprise')}
                 className="w-full px-4 py-3 bg-black/50 border border-cyan-500/50 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition"
               >
                 <option value="basic">Basic | أساسي</option>
@@ -144,7 +144,7 @@ export function SimulationSetup({ onStart }: SimulationSetupProps) {
               </label>
               <select
                 value={decisions.aiIntegration}
-                onChange={(e) => updateDecision('aiIntegration', e.target.value as any)}
+                onChange={(e) => updateDecision('aiIntegration', e.target.value as 'none' | 'basic' | 'advanced')}
                 className="w-full px-4 py-3 bg-black/50 border border-cyan-500/50 rounded-lg text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition"
               >
                 <option value="none">None | لا يوجد</option>
