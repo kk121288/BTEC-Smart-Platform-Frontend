@@ -1,5 +1,13 @@
-import AppRouter from './router';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Simulation from './pages/Simulation';
 
 export default function App() {
-  return <AppRouter />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/simulation" replace />} />
+        <Route path="/simulation" element={<Simulation />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
