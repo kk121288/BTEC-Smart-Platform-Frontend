@@ -113,3 +113,75 @@ export interface StudentFilters {
   course?: string;
   grade?: string;
 }
+
+// Simulation types
+export interface SimulationDecisions {
+  projectType: 'tech' | 'finance' | 'marketing';
+  budget: 'low' | 'medium' | 'high';
+  marketing: 'socialMedia' | 'traditional' | 'influencer';
+  complexityLevel: 'Basic' | 'Intermediate' | 'Advanced';
+  cybersecurity?: 'basic' | 'advanced' | 'enterprise';
+  aiIntegration?: 'none' | 'basic' | 'advanced';
+}
+
+export interface SimulationPerformance {
+  tech: number;
+  finance: number;
+  market: number;
+  overall: number;
+}
+
+export interface MonthlyData {
+  month: number;
+  revenue: number;
+  costs: number;
+  profit: number;
+  marketShare: number;
+  techScore: number;
+  financeScore: number;
+}
+
+export interface CompetitorData {
+  name: string;
+  marketShare: number;
+  strategy: string;
+}
+
+export interface EconomicEngineResult {
+  performance: SimulationPerformance;
+  monthlyData: MonthlyData[];
+  marketVolatility: number;
+  riskFactors: string[];
+  recommendations: string[];
+  competitors: CompetitorData[];
+}
+
+export interface Simulation {
+  id: string;
+  studentName: string;
+  decisions: SimulationDecisions;
+  performance: SimulationPerformance;
+  result: EconomicEngineResult;
+  createdAt: string;
+  completedAt: string;
+}
+
+export interface LiveSimulationData {
+  currentMonth: number;
+  performance: SimulationPerformance;
+  marketVolatility: number;
+  competitorActivity: string[];
+  elapsedTime: number;
+}
+
+export interface ComparisonInsight {
+  metric: string;
+  winner: string;
+  difference: number;
+  recommendation: string;
+}
+
+export interface ComparisonResult {
+  simulations: Simulation[];
+  insights: ComparisonInsight[];
+}

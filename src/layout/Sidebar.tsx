@@ -9,6 +9,7 @@ import {
   Settings,
   LogOut,
   ChevronLeft,
+  Boxes,
 } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 import { useUIStore } from '../store/uiStore';
@@ -17,6 +18,7 @@ import { cn } from '../lib/utils';
 
 const menuItems = [
   { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { path: '/simulation', icon: Boxes, label: 'Simulation' },
   { path: '/upload', icon: Upload, label: 'Upload' },
   { path: '/results', icon: FileText, label: 'Results' },
   { path: '/students', icon: Users, label: 'Students' },
